@@ -14,6 +14,7 @@ import enableModules from './modules';
 import limiter from './configs/limiter';
 import corsOptions from './configs/cors';
 import params from './configs/params';
+import expressValidator from 'express-validator';
 import configPassport from './strategies/passport-jwt';
 import database from './configs/database';
 import { BAD_REQUEST_CODE } from './configs/status-codes';
@@ -39,6 +40,7 @@ class Application {
 
     configApp() {
         this.app.use(cors(corsOptions))
+            .use(expressValidator())
             .use(json())
             .use(urlencoded({extended: true}))
             .use(cookieParser())
